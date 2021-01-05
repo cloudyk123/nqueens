@@ -1,2 +1,6 @@
 HolidayTests/bin
 HolidayTests/obj
+Lib/bin
+Lib/obj
+*.user
+.vs/Holiday/v16/.suo
