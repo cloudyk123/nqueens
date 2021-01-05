@@ -1,0 +1,12 @@
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/bin/Debug/net5.0/Lib.deps.json
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/bin/Debug/net5.0/Lib.dll
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/bin/Debug/net5.0/ref/Lib.dll
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/bin/Debug/net5.0/Lib.pdb
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/obj/Debug/net5.0/Lib.csprojAssemblyReference.cache
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/obj/Debug/net5.0/Lib.GeneratedMSBuildEditorConfig.editorconfig
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/obj/Debug/net5.0/Lib.AssemblyInfoInputs.cache
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/obj/Debug/net5.0/Lib.AssemblyInfo.cs
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/obj/Debug/net5.0/Lib.csproj.CoreCompileInputs.cache
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/obj/Debug/net5.0/Lib.dll
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/obj/Debug/net5.0/ref/Lib.dll
+/Users/marsen/Repo/Sandbox/CSharpUT.Core/Lib/obj/Debug/net5.0/Lib.pdb
