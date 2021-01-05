@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace HolidayTests
 {
-    [TestFixture]
+   [TestFixture]
     public class AuthenticationServiceTests
     {
         [Test()]
