@@ -3,7 +3,7 @@ using NUnit.Framework;
 
 namespace HolidayTests
 {
-   [TestFixture]
+    [TestFixture]
     public class AuthenticationServiceTests
     {
         [Test()]
@@ -15,6 +15,6 @@ namespace HolidayTests
 
             //always failed
             Assert.IsTrue(actual);
-        } 
+        }
     }
 }
