@@ -1,15 +1,20 @@
-using System;
 using NUnit.Framework;
 
-namespace HolidayTests
+namespace HolidayTests;
+
+[TestFixture]
+public class HolidayTest
 {
-    [TestFixture]
-    public class HolidayTest
+    [Test]
+    public void Test1()
     {
-        [Test]
-        public void Test1()
-        {
-            Assert.True(true);
-        }
+        Assert.True(true);
+    }
+
+    [Test]
+    public void Test2()
+    {
+        Assert.False(false);
     }
 }
+
