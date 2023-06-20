@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestPlatform.CoreUtilities.Extensions;
 using NUnit.Framework;
 
 namespace HolidayTests;
@@ -11,109 +10,54 @@ public class Solution
     [Test]
     public void SolveNQueens()
     {
-        var n = 5;
+        var n = 3;
 
         IList<IList<string>> ans = new List<IList<string>>();
-        
-        for (int i = 0; i < n; i++)
-        {
-            IList<string> tempans = new List<string>(); 
-            tempans.Add("");
-            for (int j = 0; j < n; j++)
-            {
-                if (j == i)
-                {
-                    tempans[0] = tempans[0] + "Q";
-                }
-                else
-                {
-                    tempans[0] = tempans[0] + "."; 
-                }
-            }
+        IList<string> tempans = new List<string>();
 
-            recursive(n -1, 0, n, tempans, ans, 1);
-            
+        for (var column = 0; column < n; column++)
+        {
+            tempans.Add(".");
+            for (var row = 1; row < n; row++) tempans[column] = tempans[column] + ".";
         }
 
-        foreach (IList<string> an in ans)
+        recursive(0, n, tempans, ans);
+
+        foreach (var an in ans)
         {
-            foreach (string number in an)
-            {
-                Console.Write(number + " ");
-            }
+            foreach (var number in an) Console.Write(number + " ");
             Console.WriteLine();
         }
     }
 
-    private IList<IList<string>> recursive(int row, int column, int n, IList<string> tempans, IList<IList<string>> ans,
-        int queenNum)
+    private IList<IList<string>> recursive(int row, int n, IList<string> tempans, IList<IList<string>> ans)
     {
-        if ((column + 1) * (row + 1) == n * n)
+        if (row == n)
         {
-            if (queenNum == n)
-            {
-                ans.Add(tempans);
-            }
+            IList<string> solution = new List<string>();
+            foreach (var rowans in tempans) solution.Add(rowans);
 
+            ans.Add(solution);
             return ans;
         }
-        
-            if (queenNum <= n)
+
+        for (var column = 0; column < n; column++)
+            if (!checkSameRowAndDiagnoseHasQueen(tempans, row, column, n))
             {
-                if (row == n -1)
-                {
-                    if (checkSameColumnAndDiagnoseHasQueen(tempans, 0, column + 1, n))
-                    {
-                        tempans.Add(".");
-                        recursive(0, column + 1, n, tempans, ans, queenNum);
-                    }
-                    else
-                    {
-                        for (int i = 0; i < n; i++)
-                        {
-                            if (i == 0)
-                            {
-                                tempans.Add("Q");
-                            }
-                            else
-                            {
-                                tempans[column + 1] = tempans[column + 1] + ".";
-                            }
-                        }
+                var chararray = tempans[column].ToCharArray();
+                chararray[row] = 'Q';
+                var str = new string(chararray);
+                tempans[column] = str;
 
-                        queenNum++;
-                        recursive(n - 1, column + 1, n, tempans, ans, queenNum);
-                    }
+                ans = recursive(row + 1, n, tempans, ans);
 
-                }
-                else
-                {
-                    if (checkSameColumnAndDiagnoseHasQueen(tempans, row + 1, column, n))
-                    {
-                        tempans[column] = tempans[column] + ".";
-                        recursive(row + 1, column, n, tempans, ans, queenNum);
-                    }
-                    else
-                    {
-                        for (int i = row + 1; i < n; i++)
-                        {
-                            if (i == row + 1)
-                            {
-                                tempans[column] = tempans[column] + "Q";
-                            }
-                            else
-                            {
-                                tempans[column] = tempans[column] + ".";
-                            }
-                        }
-
-                        queenNum++;
-                        recursive(n - 1, column, n, tempans, ans, queenNum);
-                    }
-                }
+                chararray[row] = '.';
+                str = new string(chararray);
+                tempans[column] = str;
             }
 
-            return ans;
+
+        return ans;
     }
 
     private char getChar(string s, int position)
@@ -123,38 +67,29 @@ public class Solution
     }
 
 
-    private bool checkSameColumnAndDiagnoseHasQueen(IList<string> tempans, int row, int column, int n)
+    private bool checkSameRowAndDiagnoseHasQueen(IList<string> tempans, int row, int column, int n)
     {
-     
         var queen = 'Q';
 
-        var checkColumnstart = 0;
-        var checkCloumnend = column -1;
-
-        int mem = 1;
-        for (int i = column -1; i >= 0; i--) {
-            
-            if (getChar(tempans[i], row) == queen)
-            {
+        var mem = 1;
+        var tempcol1 = column;
+        var tempcol2 = column;
+        for (var i = 0; i <= row; i++)
+        {
+            if (getChar(tempans[column], i) == queen) 
                 return true;
-            }
-            
-            if ((row - mem) >= 0 && getChar(tempans[i], row - mem) == queen)
-            {
-                return true;
-            }
 
-            if ((row + mem) <= n-1 && getChar(tempans[i], row + mem) == queen)
-            {
-                return true; 
-            }
+            if (row - mem >= 0 && tempcol1 - 1 >= 0 && getChar(tempans[tempcol1 - 1], row - mem) == queen) return true;
+
+            if (row - mem >= 0 && tempcol2 + 1 <= n - 1 && getChar(tempans[tempcol2 + 1], row - mem) == queen)
+                return true;
 
             mem++;
-            
+            tempcol1--;
+            tempcol2++;
         }
-        
+
 
         return false;
     }
-    
 }
