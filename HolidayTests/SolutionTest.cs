@@ -10,7 +10,7 @@ public class Solution
     [Test]
     public void SolveNQueens()
     {
-        var n = 3;
+        var n = 8;
 
         IList<IList<string>> ans = new List<IList<string>>();
         IList<string> tempans = new List<string>();
